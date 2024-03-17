@@ -1,0 +1,28 @@
+<script setup lang="ts">
+import HelloWorld from './components/HelloWorld.vue'
+
+import JSEncrypt from 'jsencrypt';
+
+const encryptor = new JSEncrypt();
+encryptor.setPublicKey(`-----BEGIN PUBLIC KEY-----
+MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA1DFGbMTyDZQM6llZFSt5JkNfafZTNYmukAbeCHvWzPRrwr5m5IlYtBUQRMxdsJ4x5QsSiV2LQvjO3WgIzUl0GWxdqsZOLQxLG+gfkJqgzjiXsNp56qAUU9wM6IvJgdQGZw0HwbfF8UEmebhiCi2HR9IhR1via2/BSq7Ppk2lv9uM5ALXmmejjH6a0tis3XulQ5a7cRyDgub665qBYm1C7V/zZuhD6CIGQ/iqX4gnPA7b+6NgvTz05rzdUUymTTk+EBWv9MiE1yVaIMxQtJGPZQEbF61FwQwybQZEVv3VwiH+FXXWAMPsWTZ0v6jw02EqDz3JYa/VypkuidNeJnCvSQIDAQAB
+-----END PUBLIC KEY-----`);
+const encrypted = encryptor.encrypt("Hello World!");
+console.log("加密后的文本:", encrypted);
+
+encryptor.setPrivateKey(`-----BEGIN RSA PRIVATE KEY-----
+MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDUMUZsxPINlAzqWVkVK3kmQ19p9lM1ia6QBt4Ie9bM9GvCvmbkiVi0FRBEzF2wnjHlCxKJXYtC+M7daAjNSXQZbF2qxk4tDEsb6B+QmqDOOJew2nnqoBRT3Azoi8mB1AZnDQfBt8XxQSZ5uGIKLYdH0iFHW+Jrb8FKrs+mTaW/24zkAteaZ6OMfprS2Kzde6VDlrtxHIOC5vrrmoFibULtX/Nm6EPoIgZD+KpfiCc8Dtv7o2C9PPTmvN1RTKZNOT4QFa/0yITXJVogzFC0kY9lARsXrUXBDDJtBkRW/dXCIf4VddYAw+xZNnS/qPDTYSoPPclhr9XKmS6J014mcK9JAgMBAAECggEAA0yyDsGJqAqY054VdteChN6AVQcwQdr4Iwo2sqtGUR3HfTN1XL41nTTePphujojVnf1Flp6k3aMKO6j0YuJun6SVPxeu7uyYts1HWS0zLST18UyWBiV8gdW52txHNmS3Jfjh/+VDlGq4b/Hp9SsorHlVuVfYiTL0Lp0FFc3YTK4hV5/VpY4hqOjjJApsCIOmqfDQ0dpOMdzlrz1nWfFlMA8yfrpkC+kR18CZRQy1xhONUc3vF7cESJbXcq28AT8VbcEuTlwvYHdD5stNH6BWF5soB2cmPpr6NIWGJ7kShLuxh3b+lX8Tg7OgTMee0j6g0X2hZg/FBMc4eNiUk0WiRwKBgQDVcuvxMK6+3hWP/I85tJYjJPCWGa0xyKjyb5v5dpaTnhazWkyHxuP9mzM0UL9VQuv1uiE5CJK/taNnAqD5J7k6yYfJz/EWtycoxEWSrKKR8vg9tk++Xf8gCnZ+sztf2MyQDNV9cokU6ZKNCpeOWH+tTSt3Qrh/yYR6p+vMeSBv0wKBgQD+fjuu7M4Q231AXHaY7nIcj5HIh8KBY3Q7CsFdjo46/Uws85eYr1fegISyG6atDMYbPs6fKkZ7H/x9PEMOCjjtyceildwLA1H6FQInRxiIwF9R2QsfZo/4dhKamNNOS6a0AQJNbfxKHYmHS2HRvwT90ilO9TMAW4D1R1oWMrMO8wKBgQCV1NnysK25pcOVE0CmzTEm8mM/uj5tV+HgbKAceTYx4SMmOxjFpsOb3joPWy8z9ooUL9fqZS4+DI7rXFkLDOtlbNo4vBMMUvzWDRCZaT2lHd1L1JIdm3XfU/jh74aaPWE7LQcfzCqV12/cObcxYMYfLLB6QweoDBlG0GEhY1V1qQKBgBJx98Vv6GeUYPmfOgFPlvm29iwAmvphyPTWjLlJMcnYvgKsDRrF6qp3yiZWlrgIKvuii7tBhyY5ZUV2bq2/0+x4KX4BOpeZwAFOMH/ESWTv/HikMIgwGNM7S5Hk7bvJA+YcBJy0EgsVJPinYAmhvKzg5JmScAXgm/IrH75oIk49AoGABh6HEgoKOv9T+sLSQ7PJqG42YvhB6A+aisB4sNCyF2+qdpT7FSZXgOz6KzjoqbKKm7Qlae57qL4bVsBcrI/ZO89S03Gq2DeheGmJUChutU9Cai7YFPC+igjUdofF/dliD9yFkAalOLmL6eA3jYQU2fy1qqN4T9fUXuGnO8K4foE=
+-----END RSA PRIVATE KEY-----`);
+const decrypted = encryptor.decrypt(encrypted as string);
+console.log("解密后的文本:", decrypted);
+
+</script>
+
+<template>
+
+  <HelloWorld msg="Vite + Vue" />
+</template>
+
+<style scoped>
+
+</style>
